@@ -23,8 +23,6 @@
     'Directory_default': '{0}/{1}'.format(map.wwwdir, sitename),
     'Directory': {
         'Options': '-Indexes FollowSymLinks',
-        'Order': 'allow,deny',
-        'Allow': 'from all',
         'AllowOverride': 'None',
     },
 } %}
@@ -44,6 +42,10 @@
 
     {% if site.get('DocumentRoot') != False %}DocumentRoot {{ vals.DocumentRoot }}{% endif %}
     {% if site.get('VirtualDocumentRoot') %}VirtualDocumentRoot {{ vals.VirtualDocumentRoot }}{% endif %}
+
+    {% for alias, dir in site.get('Alias', {}).items() %}
+    Alias {{ alias }} "{{ dir }}"
+    {% endfor %}
 
     {% for path, dir in site.get('Directory', {}).items() %}
     {% set dvals = {
