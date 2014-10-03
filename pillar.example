@@ -13,6 +13,11 @@ apache:
 apache:
   mod_wsgi: mod_wsgi
 
+# ``apache.mod_wsgi`` added any mod:
+mods_enabled:
+  - cgi
+  - headers
+
 # ``apache.vhosts`` formula additional configuration:
 apache:
   sites:
